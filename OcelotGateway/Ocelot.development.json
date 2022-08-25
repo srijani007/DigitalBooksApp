@@ -1,0 +1,201 @@
+{
+  //ocelot_URl://https://localhost:7255/configuration
+
+  "Routes": [
+    //Getuser
+    {
+      "DownstreamPathTemplate": "/Author/GetUsers",
+      "DownstreamScheme": "https",
+      "DownstreamHttpMethod": "Get",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7136
+        }
+      ],
+      "UpstreamPathTemplate": "/Get/AuthorAccounts", //from API gateway
+      "UPsteamHttpMethod": [ "Get" ]
+    },
+    //UpdateUser
+    {
+      "DownstreamPathTemplate": "/Author/UpdateUser",
+      "DownstreamScheme": "https",
+      "DownstreamHttpMethod": "Put",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7136
+        }
+      ],
+      "UpstreamPathTemplate": "/Update/AuthorAccounts", //from API gateway
+      "UPsteamHttpMethod": [ "Put" ]
+    },
+    //DeleteUser
+    {
+      "DownstreamPathTemplate": "/Author/DeleteUser",
+      "DownstreamScheme": "https",
+      "DownstreamHttpMethod": "Delete",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7136
+        }
+      ],
+      "UpstreamPathTemplate": "/Delete/AuthorAccounts", //from API gateway
+      "UPsteamHttpMethod": [ "Delete" ]
+    },
+    //SignUp
+    {
+      "DownstreamPathTemplate": "/Author/SignUp",
+      "DownstreamScheme": "https",
+      "DownstreamHttpMethod": "Post",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7136
+        }
+      ],
+      "UpstreamPathTemplate": "/SignUp/AuthorAccounts", //from API gateway
+      "UPsteamHttpMethod": [ "Post" ]
+    },
+    //GetBooks
+    {
+      "DownstreamPathTemplate": "/Book/GetBooks",
+      "DownstreamScheme": "https",
+      "DownstreamHttpMethod": "Get",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7275
+        }
+      ],
+      "UpstreamPathTemplate": "/Get/AuthorBooks", //from API gateway
+      "UPsteamHttpMethod": [ "Get" ]
+    },
+    //GetBooksbyauthorname
+    {
+      "DownstreamPathTemplate": "/Book/GetBookbyName",
+      "DownstreamScheme": "https",
+      "DownstreamHttpMethod": "Get",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7275
+        }
+      ],
+      "UpstreamPathTemplate": "/Get/AuthorBooksbyname", //from API gateway
+      "UPsteamHttpMethod": [ "Get" ]
+    },
+    //GetBookbyName
+    {
+      "DownstreamPathTemplate": "/Book/GetBookbyName",
+      "DownstreamScheme": "https",
+      "DownstreamHttpMethod": "Get",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7275
+        }
+      ],
+      "UpstreamPathTemplate": "/GetBookbyName/AuthorBooks", //from API gateway
+      "UPsteamHttpMethod": [ "Get" ]
+    },
+    //AddBook
+    {
+      "DownstreamPathTemplate": "/Book/AddBooks",
+      "DownstreamScheme": "https",
+      "DownstreamHttpMethod": "Post",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7275
+        }
+      ],
+      "UpstreamPathTemplate": "/add/AuthorBooks", //from API gateway
+      "UPsteamHttpMethod": [ "Post" ]
+    },
+    //UpdateBook
+    {
+      "DownstreamPathTemplate": "/Book/UpdateBooks",
+      "DownstreamScheme": "https",
+      "DownstreamHttpMethod": "Put",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7275
+        }
+      ],
+      "UpstreamPathTemplate": "/Update/AuthorBooks", //from API gateway
+      "UPsteamHttpMethod": [ "Put" ]
+    },
+    //SerachBook
+    {
+      "DownstreamPathTemplate": "/Reader/BasedonCriteria",
+      "DownstreamScheme": "https",
+      "DownstreamHttpMethod": "Get",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7163
+        }
+      ],
+      "UpstreamPathTemplate": "/search/AuthorBooks", //from API gateway
+      "UPsteamHttpMethod": [ "Get" ]
+    },
+    //GetPaymentsbyemail
+    {
+      "DownstreamPathTemplate": "/Reader/PaymentbyEmail",
+      "DownstreamScheme": "https",
+      "DownstreamHttpMethod": "Get",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7163
+        }
+      ],
+      "UpstreamPathTemplate": "/searchbyemail/AuthorBooks", //from API gateway
+      "UPsteamHttpMethod": [ "Get" ]
+    },
+    //PurchaseBook
+    {
+      "DownstreamPathTemplate": "/Reader/PurchaseBook",
+      "DownstreamScheme": "https",
+      "DownstreamHttpMethod": "Post",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7163
+        }
+      ],
+      "UpstreamPathTemplate": "/purchase/AuthorBooks", //from API gateway
+      "UPsteamHttpMethod": [ "Post" ]
+    },
+    //Authentication
+    {
+      "DownstreamPathTemplate": "/Authentication/SignIn",
+      "DownstreamScheme": "https",
+      "DownstreamHttpMethod": "Post",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7204
+        }
+      ],
+      "UpstreamPathTemplate": "/Validate/Author", //from API gateway
+      "UPsteamHttpMethod": [ "Post" ]
+    }
+  ]
+}
