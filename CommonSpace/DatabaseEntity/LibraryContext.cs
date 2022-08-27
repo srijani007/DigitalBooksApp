@@ -37,6 +37,10 @@ namespace CommonSpace.DatabaseEntity
 
                 entity.Property(e => e.BookId).HasColumnName("BookID");
 
+                entity.Property(e => e.Active)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.AuthorName)
                     .HasMaxLength(100)
                     .IsUnicode(false);
@@ -121,7 +125,17 @@ namespace CommonSpace.DatabaseEntity
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Logo).IsUnicode(false);
+
                 entity.Property(e => e.PaymentDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Price)
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Title)
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Book)
                     .WithMany(p => p.Payments)

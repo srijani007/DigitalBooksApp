@@ -18,7 +18,7 @@ namespace BookApi.Services
         /// <param name="book"></param>
         /// <returns>Book added successfully</returns>
         /// <exception cref="Exception"></exception>
-        public List<Book> AddBook(BookDetails book)
+        public string AddBook(BookDetails book)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace BookApi.Services
                 bookDetails.PublishedDate = DateTime.UtcNow;
                 libDbContext.Books.Add(bookDetails);
                 libDbContext.SaveChanges();
-                return null;
+                return AppVariables.bookAddedSuccessfully;
             }
             catch (Exception ex)
             {
@@ -51,23 +51,37 @@ namespace BookApi.Services
         /// <param name="book"></param>
         /// <returns>Book status updated</returns>
         /// <exception cref="Exception"></exception>
-        public string UpdateBookDetails(BookBlock book)
+        public string Updatebooks(Updatebookdetails book)
         {
             try
             {
-                var updatebook = libDbContext.Books.Where(x => x.BookId == book.BookId)
-                .FirstOrDefault();
-                if (updatebook == null)
-                {
-                    return AppVariables.bookNotFound;
-                }
-                else
-                {
-                    updatebook.Active = book.Active;
-                    libDbContext.Books.Update(updatebook);
-                    libDbContext.SaveChanges();
-                    return AppVariables.bookstatusupdated;
-                }
+                var lst = libDbContext.Books.ToList();
+                int index = lst.FindIndex(s => s.BookId == book.BookId);
+                lst[index].Logo = book.Logo;
+                lst[index].Title = book.Title;
+                lst[index].Content = book.Content;
+                lst[index].AuthorName = book.AuthorName;
+                lst[index].Publisher = book.Publisher;
+                lst[index].Active = book.Active;
+                lst[index].Category = book.Category;
+                lst[index].ModifiedDate = DateTime.UtcNow;
+                lst[index].Price = book.Price;
+                lst[index].PublishedDate = DateTime.UtcNow;
+                //bookDetails.title = book.title;
+                //    bookDetails.content = book.content;
+                //    bookDetails.authorName = book.authorName;
+                //    bookDetails.publisher = book.publisher;
+                //    bookDetails.createdDate = DateTime.UtcNow;
+                //    bookDetails.active = book.active;
+                //    bookDetails.category = book.category;
+                //    bookDetails.modifiedDate = DateTime.UtcNow;
+                //    bookDetails.logo = book.logo;
+                //    bookDetails.price = book.price;
+                //    bookDetails.publishedDate = DateTime.UtcNow; 
+                libDbContext.Books.Update(lst[index]);
+                libDbContext.SaveChanges();
+                return AppVariables.bookstatusupdated;
+
             }
             catch (Exception ex)
             {
@@ -174,5 +188,39 @@ namespace BookApi.Services
         }
 
 
+        public List<Book> GetContent(Viewcontent viewcontent)
+        {
+            try
+            {
+                var bookcontent = libDbContext.Books.Where(b => b.BookId == viewcontent.BookId).Select(b => b);
+                return bookcontent.ToList();
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public int RemoveBook(Viewcontent book)
+        {
+            try
+            {
+                //Book? books = new Book();
+                var books = libDbContext.Books.Where(s => s.BookId == book.BookId).Select(s => s.BookId).FirstOrDefault();
+                if (books > 0)
+                {
+                   // Payment? payment = new Payment();
+                  // List<string> payment = libDbContext.Payments.Where(p => p.BookId == books).Select(p=>p).FirstOrDefault();
+
+                    //libDbContext.Books.Remove(books);
+                    return 0;//AppVariables.bookremoved;
+                }
+                return 0;// AppVariables.bookDoesnotExists;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
+
 }

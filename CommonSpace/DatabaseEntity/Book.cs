@@ -19,7 +19,7 @@ namespace CommonSpace.DatabaseEntity
         public string Publisher { get; set; } = null!;
         public DateTime PublishedDate { get; set; }
         public string Content { get; set; } = null!;
-        public bool Active { get; set; }
+        public string? Active { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
 

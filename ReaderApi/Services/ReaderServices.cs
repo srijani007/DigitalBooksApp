@@ -24,16 +24,25 @@ namespace ReaderApi.Services
         {
             try
             {
-                
+                var details = libDbcontext.Payments.Where(p => p.BuyerEmail == paymentdetails.BuyerEmail && p.BookId == paymentdetails.BookId).Any(p=>p.BuyerEmail==paymentdetails.BuyerEmail && p.BookId==paymentdetails.BookId);
+                if (details == true)
+                {
+                    return AppVariables.bookAlreadyBought;
+                }
+                else
+                {
                     var payment = new Payment();
                     payment.BuyerName = paymentdetails.BuyerName;
                     payment.BuyerEmail = paymentdetails.BuyerEmail;
                     payment.BookId = paymentdetails.BookId;
+                    payment.Price = paymentdetails.Price;
+                    payment.Logo = paymentdetails.Logo;
+                    payment.Title = paymentdetails.Title;
                     payment.PaymentDate = DateTime.UtcNow;
-                    //var data = payment;
                     libDbcontext.Payments.Add(payment);
                     libDbcontext.SaveChanges();
-                    return AppVariables.paymentSuccessful;              
+                    return AppVariables.paymentSuccessful;
+                }
                
             }
             catch (Exception ex)

@@ -68,7 +68,7 @@ namespace AuthenticationWebApi.Controllers
                     return Unauthorized();
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 return Unauthorized();
             }

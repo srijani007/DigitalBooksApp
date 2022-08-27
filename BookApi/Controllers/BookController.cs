@@ -52,13 +52,13 @@ namespace BookApi.Controllers
                     if (roletype == "author" || roletype == "Author")
                     {
                         var result = _bookServices.AddBook(book);
-                        if (book == null)
+                        if (result == null)
                         {
                             BadRequest();
                         }
                         else
                         {
-                            return result;
+                            return Ok(new { result });
                         }
                         return Ok();
                     }
@@ -74,8 +74,8 @@ namespace BookApi.Controllers
             }
         }
 
-        [HttpPut("UpdateBooks")]
-        public ActionResult<string> EditBookDeatils([FromBody] BookBlock book)
+        [HttpPut("UpdateBook")]
+        public ActionResult<string> EditBookDeatils([FromBody] Updatebookdetails book)
         {
             try
             {
@@ -86,18 +86,18 @@ namespace BookApi.Controllers
                 }
                 else
                 {
-                    var roletype = identity.FindFirst("RoleId").ToString();
-                    if (roletype == "Author")
+                    var roletype = identity.FindFirst("UserRole").Value;
+                    if (roletype == "Author" || roletype == "author")
                     {
-                        string result = _bookServices.UpdateBookDetails(book);
+                        string result = _bookServices.Updatebooks(book);
 
-                        if (book == null)
+                        if (result == null)
                         {
                             BadRequest();
                         }
                         else
                         {
-                            return result;
+                            return Ok(new { result });
                         }
                         return Ok("");
                     }
@@ -134,5 +134,34 @@ namespace BookApi.Controllers
                 throw new Exception(ex.Message);
             }
         }
+
+        [HttpPost("GetDetailsbyId")]
+        public ActionResult<string> GetBookDetails([FromBody] Viewcontent viewcontent )
+        {
+            var content = _bookServices.GetContent(viewcontent);
+            if(content == null)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(new { content });
+            }
+        }
+       
+        //[HttpDelete("DeleteBook")]
+        //public ActionResult<int> DeleteBookDetails([FromBody] Viewcontent book)
+        //{
+        //    try
+        //    {
+        //        int result = _bookServices.RemoveBook(book);
+        //        return Ok(result);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception(ex.Message);
+        //    }
+        //}
+
     }
 }

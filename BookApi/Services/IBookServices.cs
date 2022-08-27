@@ -7,10 +7,12 @@ namespace BookApi.Services
     {
         LibraryContext libDbContext { get; set; }
 
-        List<Book> AddBook(BookDetails book);
+        string AddBook(BookDetails book);
         List<Book> GetBookbyAuthordetails(GetBookbyAuthorId getbook);
         List<Book> GetBooks();
+        List<Book> GetContent(Viewcontent viewcontent);
+       // int RemoveBook(Viewcontent book);
         List<Book> SearchBookbyConditions(SearchBooks searchbooks);
-        string UpdateBookDetails(BookBlock book);
+        string Updatebooks(Updatebookdetails book);
     }
 }

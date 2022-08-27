@@ -28,7 +28,7 @@ namespace ReaderApi.Controllers
                 var currentbook = _bookServices.SearchBookbyConditions(searchbooks);
                 if (currentbook != null)
                 {
-                    return Ok(currentbook);
+                    return Ok(new { currentbook });
                 }
                 else
                 {

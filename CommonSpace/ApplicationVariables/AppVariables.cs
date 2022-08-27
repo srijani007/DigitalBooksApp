@@ -17,9 +17,9 @@
         public static string userRemoved = "User has been deleted or removed";
         public static string userDoesnotExists = "User does not exists";
         public static string paymentSuccessful = "Payment Successful";
-           // public static string
-           // public static string
-//public static string
+        public static string bookremoved = "Book deleted";
+        public static string bookDoesnotExists = "Book does not exists";
+        public static string bookAlreadyBought = "Book has already bought";
 
     }
 }

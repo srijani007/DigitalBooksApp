@@ -40,7 +40,7 @@ namespace AuthorApi.Controllers
                         }
                         else
                         {
-                            return users;
+                            return Ok(users);
                         }
                         return Ok("");
                     }
@@ -63,7 +63,7 @@ namespace AuthorApi.Controllers
             try
             {
                 string result = _authorServices.UpdateUserAccount(user);
-                return Ok(result);
+                return Ok(new { result } );
             }
             catch (IndexOutOfRangeException ex)
             {
@@ -82,7 +82,7 @@ namespace AuthorApi.Controllers
             try
             {
                 string result = _authorServices.RemoveUser(user);
-                return Ok(result);
+                return Ok(  result );
             }
             catch (Exception ex)
             {
@@ -98,7 +98,7 @@ namespace AuthorApi.Controllers
                 var result = _authorServices.UsersignUp(user);
                 return Ok(result);
             }
-            catch (Exception ex)
+            catch
             {
                 return null;
             }

@@ -3,8 +3,9 @@ using System.Text.Json.Serialization;
 
 namespace CommonSpace.Models
 {
-    public class BookDetails
+    public class Updatebookdetails
     {
+        public int BookId { get; set; }
         public string Title { get; set; } = null!;
         public string Category { get; set; } = null!;
         public decimal Price { get; set; }
