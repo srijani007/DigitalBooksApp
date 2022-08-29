@@ -23,37 +23,12 @@ namespace AuthorApi.Controllers
         {
             try
             {
-                var identity = HttpContext.User.Identity as ClaimsIdentity;
-                if (identity == null)
-                {
-                    return Unauthorized();
-                }
-                else
-                {
-                    var roletype = identity.FindFirst("RoleId").ToString();
-                    if (roletype == "Author")
-                    {
-                        var users = _authorServices.GetUsers();
-                        if (users == null)
-                        {
-                            BadRequest();
-                        }
-                        else
-                        {
-                            return Ok(users);
-                        }
-                        return Ok("");
-                    }
-                    else
-                    {
-                        return Unauthorized();
-                    }
-                }
+             return Ok("users displyed");                
             }
 
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                return Ok(ex.Message);
             }
         }
 

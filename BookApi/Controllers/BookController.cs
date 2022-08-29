@@ -52,21 +52,21 @@ namespace BookApi.Controllers
                     if (roletype == "author" || roletype == "Author")
                     {
                         var result = _bookServices.AddBook(book);
-                        if (result == null)
-                        {
-                            BadRequest();
-                        }
-                        else
-                        {
-                            return Ok(new { result });
-                        }
+                if (result == null)
+                {
+                    BadRequest();
+                }
+                else
+                {
+                    return Ok(new { result });
+            }
                         return Ok();
-                    }
+        }
                     else
                     {
                         return Unauthorized();
-                    }
-                }
+    }
+}
             }
             catch (Exception ex)
             {
